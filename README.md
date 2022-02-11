@@ -6,7 +6,7 @@ $ cd edk2
 $ ln -s ~/mikanos/MikanLoaderPkg ./
 $ source edksetup.sh
 $ sudo apt update && sudo apt install vim -y
-$ vim Conf/target.txt
+$ rm Conf/target.txt && vim Conf/target.txt
 
 # mikanOSのビルド
 $ cd $HOME/mikanos/kernel
