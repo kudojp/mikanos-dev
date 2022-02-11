@@ -1,9 +1,9 @@
 ```sh
-$ make run DIR=mikanOS
+$ make run DIR=mikanos
 
 # 以下コンテナ内で実行。
 $ cd edk2
-$ ln -s ~/mikanOS/MikanLoaderPkg ./
+$ ln -s ~/mikanos/MikanLoaderPkg ./
 $ source edksetup.sh
 $ vim Conf/target.txt
 
@@ -11,8 +11,8 @@ $ vim Conf/target.txt
 $ build
 $ run_qemu.sh Build/MikanLoaderX64/DEBUG_CLANG38/X64/Loader.efi
 
-# mikanOSのビルド & QEMUの実行
+# mikanosのビルド & QEMUの実行
 $ source $HOME/osbook/devenv/buildenv.sh
-$ cd ../mikanOS/
+$ cd ../mikanos/
 $ APPS_DIR=apps RESOURCE_DIR=resource ./build.sh run
 ```
