@@ -2,9 +2,29 @@
 #include  <Library/UefiLib.h>
 
 EFI_STATUS EFIAPI UefiMain(
-    EFI_HANDLE image_handle,
-    EFI_SYSTEM_TABLE *system_table) {
+  EFI_HANDLE image_handle,
+  EFI_SYSTEM_TABLE *system_table) {
   Print(L"Hello, Mikan World!\n");
+
+  // #@@range_begin(main)
+  CHAR8 memmap_buf[4096 * 4];
+  struct MemoryMap memmap = {sizeof(memmap_buf), memmap_buf, 0, 0, 0, 0};
+  GetMemoryMap(&memmap);
+
+  EFI_FILE_PROTOCOL* root_dir;
+  OpenRootDir(image_handle, &root_dir);
+
+  EFI_FILE_PROTOCOL* memmap_file;
+  root_dir->Open(
+    root_dir, &memmap_file, L"\\memmap",
+    EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
+
+  SaveMemoryMap(&memmap, memmap_file);
+  memmap_file->Close(memmap_file);
+  // #@@range_end(main)
+
+  Print(L"All done\n");
+
   while (1);
   return EFI_SUCCESS;
 }
