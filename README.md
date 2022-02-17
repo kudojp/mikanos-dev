@@ -1,12 +1,12 @@
 ```sh
+$ docker build . -t dev-mikanos
 $ make run DIR=mikanos
 
 # 以下コンテナ内で実行。
 $ cd edk2
 $ ln -s ~/mikanos/MikanLoaderPkg ./
 $ source edksetup.sh
-$ sudo apt update && sudo apt install vim -y
-$ rm Conf/target.txt && vim Conf/target.txt
+$ cp /tmp/target.txt Conf/target.txt
 
 # mikanOSのビルド
 $ source $HOME/osbook/devenv/buildenv.sh # This sets CPPFLAGS and LDFLAGS.
